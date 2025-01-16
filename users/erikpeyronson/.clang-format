@@ -1,0 +1,34 @@
+---
+BasedOnStyle: GNU
+AlignAfterOpenBracket: false
+AlignConsecutiveAssignments: 'true'
+AlignConsecutiveDeclarations: 'true'
+AlignOperands: 'true'
+AllowAllParametersOfDeclarationOnNextLine: 'false'
+AllowShortCaseLabelsOnASingleLine: 'false'
+AllowShortFunctionsOnASingleLine: 'true'
+AllowShortLoopsOnASingleLine: 'false'
+AllowShortIfStatementsOnASingleLine: 'true'
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: 'false'
+BinPackArguments: 'true'
+BinPackParameters: 'true'
+ColumnLimit: '120'
+IndentCaseLabels: 'true'
+IndentPPDirectives: 'None'
+IndentWidth: '2'
+MaxEmptyLinesToKeep: '1'
+PointerAlignment: Right
+SortIncludes: 'false'
+SpaceBeforeAssignmentOperators: 'true'
+SpaceBeforeParens: ControlStatements
+SpaceInEmptyParentheses: 'false'
+SpacesBeforeTrailingComments: 1
+TabWidth: '4'
+UseTab: Never
+AllowShortEnumsOnASingleLine: 'false'
+Cpp11BracedListStyle: 'true'
+BreakArrays: 'true'
+
+
