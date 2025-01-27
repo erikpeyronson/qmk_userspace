@@ -96,7 +96,7 @@
     ],
     [
       "TG(1)",
-      "KC_TRNS",
+      "DF(0)",
       "KC_TRNS",
       "KC_TRNS",
       "KC_TRNS",
@@ -140,7 +140,7 @@
     ],
     [
       "TG(1)",
-      "KC_TRNS",
+      "DF(0)",
       "KC_TRNS",
       "KC_TRNS",
       "KC_TRNS",
@@ -296,7 +296,7 @@
       "KC_NO",
       "RGUI_T(KC_F12)",
       "KC_TRNS",
-      "KC_LALT",
+      "KC_NO",
       "KC_CUT",
       "KC_COPY",
       "KC_PSTE",
@@ -307,12 +307,12 @@
       "KC_HOME",
       "KC_END",
       "QK_AREP",
-      "ANY(MY_LT(LAYER_STC,KC_BSPC))",
       "KC_TRNS",
       "KC_TRNS",
       "KC_TRNS",
       "KC_TRNS",
-      "ANY(MY_LT(LAYER_STC,KC_SPC))"
+      "KC_TRNS",
+      "KC_TRNS"
     ]
   ],
   "author": ""
