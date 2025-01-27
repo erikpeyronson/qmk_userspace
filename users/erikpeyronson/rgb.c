@@ -37,9 +37,9 @@ static rgb_color_t layer_colors[] = {
   [LAYER_NUM]  = { RGB_BLUE   },
   [LAYER_SYM]  = { RGB_GREEN  },
   [LAYER_NAV]  = { RGB_ORANGE },
-  [LAYER_ETC]  = { RGB_RED    },
+  [LAYER_STC]  = { RGB_RED    },
   [LAYER_END]  = { RGB_OFF    },
-  [LAYER_OSM]  = { RGB_PURPLE }
+  [LAYER_ETC]  = { RGB_PURPLE }
 };
 // clang-format on
 
@@ -120,7 +120,7 @@ void my_rgb_light_mod_if_set(uint8_t kc, uint8_t led_config)
     {
       case MOD_ONESHOT:
         {
-          rgb_color_t rgb = get_color(LAYER_OSM);
+          rgb_color_t rgb = get_color(LAYER_ETC);
           rgb_matrix_set_color(led_config, rgb.red, rgb.green, rgb.blue);
           break;
         }

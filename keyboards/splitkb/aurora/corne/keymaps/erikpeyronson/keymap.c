@@ -14,13 +14,13 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
                     {QK_REPEAT_KEY, QK_ALT_REPEAT_KEY}},
     [LAYER_SWE] = {{QK_REPEAT_KEY, QK_ALT_REPEAT_KEY},
                    {QK_REPEAT_KEY, QK_ALT_REPEAT_KEY}},
-    [LAYER_OSM] = {{KC_WH_D, KC_WH_U}, {KC_WH_D, KC_WH_U}},
+    [LAYER_ETC] = {{KC_WH_D, KC_WH_U}, {KC_WH_D, KC_WH_U}},
     [LAYER_NUM] = {{MY_ALT_TAB_NAV, MY_ALT_TAB_NAV_REVERSE},
                    {MY_ALT_TAB_NAV, MY_ALT_TAB_NAV_REVERSE}},
     [LAYER_SYM] = {{MY_CTRL_TAB_NAV, MY_CTRL_TAB_NAV_REVERSE},
                    {MY_CTRL_TAB_NAV, MY_CTRL_TAB_NAV_REVERSE}},
     [LAYER_NAV] = {{KC_WH_D, KC_WH_U}, {KC_WH_D, KC_WH_U}},
-    [LAYER_ETC] = {{KC_NO, KC_NO}, {KC_NO, KC_NO}}};
+    [LAYER_STC] = {{KC_NO, KC_NO}, {KC_NO, KC_NO}}};
 
 #endif
 
@@ -65,9 +65,13 @@ tap_dance_action_t tap_dance_actions[] = {
 // clang-format on
 
 const char *layer_strings[] = {
-    [LAYER_BASE] = "Base", [LAYER_OSM] = "Osm", [LAYER_SWE] = "Swe",
-    [LAYER_NUM] = "Num",   [LAYER_SYM] = "Sym", [LAYER_NAV] = "Nav",
+    [LAYER_BASE] = "Base",
+    [LAYER_SWE] = "Swe",
     [LAYER_ETC] = "Etc",
+    [LAYER_STC] = "sEtc",
+    [LAYER_NUM] = "Num",
+    [LAYER_SYM] = "Sym",
+    [LAYER_NAV] = "Nav",
 };
 
 void keyboard_post_init_user(void) {
