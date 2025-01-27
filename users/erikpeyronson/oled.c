@@ -137,7 +137,7 @@ static void my_oled_render_selection(const char *str, bool is_active, bool is_on
 
 static void my_oled_render_layers(void)
 {
-  uint8_t current_layer = get_highest_layer(layer_state);
+  // uint8_t current_layer = get_highest_layer(layer_state);
 
   oled_write_P(PSTR("-----"), false);
   oled_write_P(PSTR("LAYER"), false);
@@ -146,7 +146,7 @@ static void my_oled_render_layers(void)
   for (layer_t layer = LAYER_BASE; layer < LAYER_END; ++layer)
     {
       const bool should_oneshot = (layer != LAYER_BASE) && (osl_state == layer);
-      my_oled_render_selection(layer_to_string(layer), (current_layer == layer), (should_oneshot));
+      my_oled_render_selection(layer_to_string(layer), (layer_state_is(layer)), (should_oneshot));
     }
 }
 
