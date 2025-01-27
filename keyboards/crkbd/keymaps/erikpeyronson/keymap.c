@@ -22,12 +22,12 @@ tap_dance_action_t tap_dance_actions[] = {
 
 const char *layer_strings[] = {
     [LAYER_BASE] = "Base",
-    [LAYER_OSM]  = "Osm",
+    [LAYER_ETC]  = "Osm",
     [LAYER_SWE]  = "Swe",
     [LAYER_NUM]  = "Num",
     [LAYER_SYM]  = "Sym",
     [LAYER_NAV]  = "Nav",
-    [LAYER_ETC]  = "Etc",
+    [LAYER_STC]  = "Etc",
 };
 
 void keyboard_post_init_user(void)
