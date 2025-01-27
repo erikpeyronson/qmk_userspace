@@ -1,6 +1,7 @@
 {
     "userspace_version": "1.1",
     "build_targets": [
-        ["crkbd/r2g", "erikpeyronson"]
+        ["crkbd/r2g", "erikpeyronson"],
+        ["splitkb/aurora/corne/rev1", "erikpeyronson"]
     ]
 }
