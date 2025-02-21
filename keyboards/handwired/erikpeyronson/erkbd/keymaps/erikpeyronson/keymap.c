@@ -10,6 +10,24 @@
 #include "erikpeyronson.h"
 
 #include "keymap_out.h"
+#include "encoder_navigation.h"
+
+// clang-format off
+#if defined(ENCODER_MAP_ENABLE)
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
+    [LAYER_BASE] = {{QK_REPEAT_KEY, QK_ALT_REPEAT_KEY},
+                    {QK_REPEAT_KEY, QK_ALT_REPEAT_KEY}},
+    [LAYER_SWE] = {{QK_REPEAT_KEY, QK_ALT_REPEAT_KEY},
+                   {QK_REPEAT_KEY, QK_ALT_REPEAT_KEY}},
+    [LAYER_ETC] = {{KC_WH_D, KC_WH_U}, {KC_WH_D, KC_WH_U}},
+    [LAYER_NUM] = {{MY_ALT_TAB_NAV, MY_ALT_TAB_NAV_REVERSE},
+                   {MY_ALT_TAB_NAV, MY_ALT_TAB_NAV_REVERSE}},
+    [LAYER_SYM] = {{MY_CTRL_TAB_NAV, MY_CTRL_TAB_NAV_REVERSE},
+                   {MY_CTRL_TAB_NAV, MY_CTRL_TAB_NAV_REVERSE}},
+    [LAYER_NAV] = {{KC_WH_D, KC_WH_U}, {KC_WH_D, KC_WH_U}},
+    [LAYER_STC] = {{KC_NO, KC_NO}, {KC_NO, KC_NO}}};
+#endif
+// clang-format on
 
 // clang-format off
 tap_dance_action_t tap_dance_actions[] = {
@@ -96,6 +114,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
       }
   }
 
+      // Custom navigation
+  if (!process_encoder_navigation(keycode, record)) {
+      return false;
+  }
 
   if (!my_rgb_process_record(keycode, record)) return false;
   return true;

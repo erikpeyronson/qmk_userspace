@@ -36,6 +36,14 @@ enum custom_keycodes {
   ONENOTE_FULL_SCREEN,
 };
 
+enum
+{
+  MY_CTRL_TAB_NAV = GENERAL_KEYCODE_OFFSET,
+  MY_CTRL_TAB_NAV_REVERSE,
+  MY_ALT_TAB_NAV,
+  MY_ALT_TAB_NAV_REVERSE
+};
+
 // Custom helper functions used by rgb/oled. Can be overridden in keymap
 char        keycode_to_char(uint16_t keycode, keyrecord_t *record);
 const char *layer_to_string(uint8_t layer);
