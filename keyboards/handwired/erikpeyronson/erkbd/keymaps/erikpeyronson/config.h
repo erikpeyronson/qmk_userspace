@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define EE_HANDS
 
 // #define QUICK_TAP_TERM
- #define TAPPING_TERM 170
+//  #define TAPPING_TERM 170
 
 #ifdef RGB_MATRIX_ENABLE
 // #   define RGB_MATRIX_KEYPRESSES // reacts to keypresses
@@ -118,13 +118,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
-#undef OLED_FONT_H
-#define OLED_FONT_H "keyboards/crkbd/keymaps/erikpeyronson/glcdfont.c"
+// #undef OLED_FONT_H
+// #define OLED_FONT_H "keyboards/handwired/erikpeyronson/erkbd/keymaps/erikpeyronson/glcdfont.c"
 #define OLED_TIMEOUT 120000
 #define MY_OLED_SCREENSAVER_TIMEOUT 10000
 #define OLED_SCREENSAVER_BRIGHTNESS 1
-#undef MY_OLED_RENDER_KEYMAP_ENABLE
+#define OLED_DISPLAY_128X64
 
+#define MY_OLED_RENDER_KEYMAP_ENABLED
 
 #define MY_RGB_KEYCODE_OFFSET SAFE_RANGE
 // #define TAP_DANCE_KEYCODE_OFFSET SAFE_RANGE + 0xFF
@@ -138,5 +139,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ONESHOT_TIMEOUT 10000  /* Time (in ms) before the one shot key is released */
 
 #define SPLIT_MODS_ENABLE
-
-#define MY_OLED_RESOLUTION_128_32

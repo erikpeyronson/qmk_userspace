@@ -8,6 +8,20 @@ static const char PROGMEM code_to_name[60] = {' ', ' ', ' ', ' ', 'a', 'b', 'c',
 
 __attribute__((weak)) const char *layer_to_string(uint8_t layer) { return layer_strings[layer]; }
 
+uint16_t get_effective_keycode(uint8_t current_layer, keypos_t key)
+{
+  // Start checking from the given layer, going down to the base layer
+  for (int8_t layer = current_layer; layer >= 0; layer--)
+    {
+      uint16_t keycode = keymap_key_to_keycode(layer, key);
+      if (keycode != KC_TRNS)
+        {
+          return keycode; // Found a non-transparent keycode
+        }
+    }
+  return KC_NO; // No valid key found (shouldn't happen in a properly defined keymap)
+}
+
 __attribute__((weak)) char keycode_to_char(uint16_t keycode, keyrecord_t *record)
 {
   if (MY_IS_QK_TAP_DANCE(keycode))
@@ -29,6 +43,11 @@ __attribute__((weak)) char keycode_to_char(uint16_t keycode, keyrecord_t *record
           default:
             return (char)0x07;
         }
+    }
+
+  if (keycode == KC_TRANSPARENT)
+    {
+      keycode = get_effective_keycode(get_highest_layer(layer_state), record->event.key);
     }
 
   if (IS_QK_MOD_TAP(keycode))
@@ -83,11 +102,6 @@ __attribute__((weak)) char keycode_to_char(uint16_t keycode, keyrecord_t *record
     {
       println("one shot mod");
       keycode = 0xE0 + biton(QK_ONE_SHOT_MOD_GET_MODS(keycode) & 0xF) + biton(QK_ONE_SHOT_MOD_GET_MODS(keycode) & 0x10);
-    }
-
-  if (keycode == KC_TRANSPARENT)
-    {
-      return 0x1F;
     }
 
   if (keycode == KC_NO)

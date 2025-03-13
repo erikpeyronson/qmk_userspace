@@ -18,29 +18,29 @@
 #define OLED_CHARS_PER_LINE 6
 
 #ifdef MY_OLED_RENDER_KEYMAP_ENABLED
-static char keymap_chars[6][3][5];
+static char keymap_chars[6][3][MATRIX_COLS];
 #endif
 
 void           my_oled_init(const uint16_t keymaps[6][MATRIX_ROWS][MATRIX_COLS])
 {
 #ifdef MY_OLED_RENDER_KEYMAP_ENABLED
-  uint8_t no_cols   = 5;
-  uint8_t first_col = 1;
+  uint8_t no_cols   = 6;
+  uint8_t first_col = 0;
 
   uint8_t no_rows = 3;
   uint8_t first_row;
 
-  uint8_t invert_offset;
+  // uint8_t invert_offset;
 
-  if (is_keyboard_master())
+  if (is_keyboard_left())
     {
       first_row     = 0;
-      invert_offset = 0;
+      // invert_offset = 0;
     }
   else
     {
-      first_row     = 4;
-      invert_offset = 6;
+      first_row = 4;
+      // invert_offset = 6;
     }
 
   for (uint8_t layer = 0; layer < 6; ++layer)
@@ -55,13 +55,14 @@ void           my_oled_init(const uint16_t keymaps[6][MATRIX_ROWS][MATRIX_COLS])
               // Mirror the index of the character for the right half so that the code rendering
               // can be used for both
               char *char_to_set;
-              if (is_keyboard_master())
+              if (is_keyboard_left())
                 {
                   char_to_set = &keymap_chars[layer][row - first_row][col - first_col];
                 }
               else
                 {
-                  char_to_set = &keymap_chars[layer][row - first_row][invert_offset - col - first_col];
+                  // char_to_set = &keymap_chars[layer][row - first_row][invert_offset - col - first_col];
+                  char_to_set = &keymap_chars[layer][row - first_row][col - first_col];
                 }
               *char_to_set = keycode_to_char(kc, NULL);
             }
@@ -76,14 +77,18 @@ static void my_oled_render_keylog(void)
   uint8_t current_layer = get_highest_layer(layer_state);
 
   uint8_t rows = 3;
-  uint8_t cols = 5;
-  oled_write_P(PSTR("-----"), false);
+  uint8_t cols = 6;
+  // oled_write_ln(PSTR("-----"), false);
+
   for (size_t i = 0; i < rows; i++)
     {
+      oled_write_P(PSTR("  "), false);
       for (size_t k = 0; k < cols; k++)
         {
           oled_write_char(keymap_chars[current_layer][i][k], false);
+          oled_write_P(PSTR("  "), false);
         }
+      oled_advance_page(true);
       oled_advance_page(true);
     }
 }
@@ -91,7 +96,10 @@ static void my_oled_render_keylog(void)
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation)
 {
+#ifdef MY_OLED_RESOLUTION_128_32
   rotation = OLED_ROTATION_270;
+#endif
+
   return rotation;
 }
 
@@ -131,10 +139,10 @@ static void my_oled_render_selection(const char *str, bool is_active, bool is_on
 
   if (strlen(str) < 4)
     {
-      oled_advance_page(false);
+      // oled_advance_page(false);
     }
 }
-
+#ifdef MY_OLED_RESOLUTION_128_32
 static void my_oled_render_layers(void)
 {
   // uint8_t current_layer = get_highest_layer(layer_state);
@@ -173,6 +181,48 @@ static void my_oled_render_locks(void)
   my_oled_render_selection( "Win",  (mod_state & MOD_BIT(KC_LEFT_GUI)),   osm_state & MOD_MASK_GUI);
   // clang-format on
 }
+#else
+// static void my_oled_render_layers(void) {}
+static void my_oled_render_locks(void)
+{
+  led_t led_config = host_keyboard_led_state();
+
+  // oled_write_P(PSTR("LOCKS"), false);
+  // oled_advance_page(true);
+  // oled_write_P(PSTR("-----"), false);
+  // oled_advance_page(true);
+  my_oled_render_selection("Word", is_caps_word_on(), false);
+  my_oled_render_selection("Caps", led_config.caps_lock, false);
+  my_oled_render_selection("Scrl", led_config.num_lock, false);
+  my_oled_render_selection("Num", led_config.num_lock, false);
+  oled_advance_page(true);
+  uint8_t mod_state = get_mods();
+  uint8_t osm_state = get_oneshot_mods();
+
+  // oled_write_P(PSTR("-----"), false);
+  // oled_advance_page(true);
+  // oled_write_P(PSTR("MODS "), false);
+  // oled_advance_page(true);
+  // oled_write_P(PSTR("-----"), false);
+  // oled_advance_page(true);
+  // clang-format off
+  my_oled_render_selection( "Ctrl", (mod_state & MOD_BIT(KC_LEFT_CTRL)),  osm_state & MOD_MASK_CTRL);
+  my_oled_render_selection( "Shif", (mod_state & MOD_BIT(KC_LEFT_SHIFT)), osm_state & MOD_MASK_SHIFT);
+  my_oled_render_selection( "Alt",  (mod_state & MOD_BIT(KC_LEFT_ALT)),   osm_state & MOD_MASK_ALT);
+  my_oled_render_selection( "Win",  (mod_state & MOD_BIT(KC_LEFT_GUI)),   osm_state & MOD_MASK_GUI);
+  // clang-format on
+}
+
+static void my_oled_render_layers(void)
+{
+  uint8_t osl_state = get_oneshot_layer();
+  for (layer_t layer = LAYER_BASE; layer < LAYER_END; ++layer)
+    {
+      const bool should_oneshot = (layer != LAYER_BASE) && (osl_state == layer);
+      my_oled_render_selection(layer_to_string(layer), (layer_state_is(layer)), (should_oneshot));
+    }
+}
+#endif
 
 void my_oled_render_info(void)
 {
@@ -184,7 +234,6 @@ void my_oled_render_info(void)
     }
   else
     {
-      oled_advance_page(false);
       my_oled_render_layers();
     }
 
