@@ -136,9 +136,9 @@ static void my_oled_render_layers(void)
   oled_write_P(PSTR("LAYER"), false);
   oled_write_P(PSTR("-----"), false);
   uint8_t osl_state = get_oneshot_layer();
-  for (layer_t layer = LAYER_BASE; layer < LAYER_END; ++layer)
+  for (layer_t layer = BAS; layer < LAYER_END; ++layer)
     {
-      const bool should_oneshot = (layer != LAYER_BASE) && (osl_state == layer);
+      const bool should_oneshot = (layer != BAS) && (osl_state == layer);
       my_oled_render_selection(layer_to_string(layer), (layer_state_is(layer)), (should_oneshot));
     }
 }
@@ -192,9 +192,9 @@ static void my_oled_render_locks(void)
 static void my_oled_render_layers(void)
 {
   uint8_t osl_state = get_oneshot_layer();
-  for (layer_t layer = LAYER_BASE; layer < LAYER_END; ++layer)
+  for (layer_t layer = BAS; layer < LAYER_END; ++layer)
     {
-      const bool should_oneshot = (layer != LAYER_BASE) && (osl_state == layer);
+      const bool should_oneshot = (layer != BAS) && (osl_state == layer);
       my_oled_render_selection(layer_to_string(layer), (layer_state_is(layer)), (should_oneshot));
     }
 }

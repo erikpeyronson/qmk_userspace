@@ -14,20 +14,20 @@
 // clang-format off
 tap_dance_action_t tap_dance_actions[] = {
     // Tap once for W, twice for switch to swedish layer
-    [TD_SWE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_MINUS, LAYER_SWE),
-    [TD_BASE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_NO, LAYER_BASE),
-    [TD_BASE_TILDE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_TILD, LAYER_BASE),
+    [TD_SWE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_MINUS, SWE),
+    [TD_BASE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_NO, BAS),
+    [TD_BASE_TILDE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_TILD, BAS),
 };
 // clang-format on
 
 const char *layer_strings[] = {
-    [LAYER_BASE] = "Base",
-    [LAYER_ETC]  = "Osm",
-    [LAYER_SWE]  = "Swe",
-    [LAYER_NUM]  = "Num",
-    [LAYER_SYM]  = "Sym",
-    [LAYER_NAV]  = "Nav",
-    [LAYER_STC]  = "Etc",
+    [BAS] = "Base",
+    [ETC]  = "Osm",
+    [SWE]  = "Swe",
+    [NUM]  = "Num",
+    [SYM]  = "Sym",
+    [NAV]  = "Nav",
+    [STC]  = "Etc",
 };
 
 void keyboard_post_init_user(void)

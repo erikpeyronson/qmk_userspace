@@ -12,13 +12,13 @@
 // clang-format off
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [LAYER_BASE] = {{QK_REPEAT_KEY, QK_ALT_REPEAT_KEY},        {QK_REPEAT_KEY, QK_ALT_REPEAT_KEY}},
-    [LAYER_SWE] = {{QK_REPEAT_KEY, QK_ALT_REPEAT_KEY},         {QK_REPEAT_KEY, QK_ALT_REPEAT_KEY}},
-    [LAYER_ETC] = {{KC_WH_D, KC_WH_U},                         {KC_WH_D, KC_WH_U}},
-    [LAYER_NUM] = {{MY_ALT_TAB_NAV, MY_ALT_TAB_NAV_REVERSE},   {MY_ALT_TAB_NAV, MY_ALT_TAB_NAV_REVERSE}},
-    [LAYER_SYM] = {{MY_CTRL_TAB_NAV, MY_CTRL_TAB_NAV_REVERSE}, {MY_CTRL_TAB_NAV, MY_CTRL_TAB_NAV_REVERSE}},
-    [LAYER_NAV] = {{KC_WH_D, KC_WH_U},                         {KC_WH_D, KC_WH_U}},
-    [LAYER_STC] = {{KC_NO, KC_NO},                             {KC_NO, KC_NO}}};
+    [BAS] = {{QK_REPEAT_KEY, QK_ALT_REPEAT_KEY},        {QK_REPEAT_KEY, QK_ALT_REPEAT_KEY}},
+    [SWE] = {{QK_REPEAT_KEY, QK_ALT_REPEAT_KEY},         {QK_REPEAT_KEY, QK_ALT_REPEAT_KEY}},
+    [ETC] = {{KC_WH_D, KC_WH_U},                         {KC_WH_D, KC_WH_U}},
+    [NUM] = {{MY_ALT_TAB_NAV, MY_ALT_TAB_NAV_REVERSE},   {MY_ALT_TAB_NAV, MY_ALT_TAB_NAV_REVERSE}},
+    [SYM] = {{MY_CTRL_TAB_NAV, MY_CTRL_TAB_NAV_REVERSE}, {MY_CTRL_TAB_NAV, MY_CTRL_TAB_NAV_REVERSE}},
+    [NAV] = {{KC_WH_D, KC_WH_U},                         {KC_WH_D, KC_WH_U}},
+    [STC] = {{KC_NO, KC_NO},                             {KC_NO, KC_NO}}};
 
 #endif
 // clang-format on
@@ -26,20 +26,20 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 // clang-format off
 tap_dance_action_t tap_dance_actions[] = {
     // Tap once for W, twice for switch to swedish layer
-    [TD_SWE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_MINUS, LAYER_SWE),
-    [TD_BASE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_NO, LAYER_BASE),
-    [TD_BASE_TILDE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_TILD, LAYER_BASE),
+    [TD_SWE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_MINUS, SWE),
+    [TD_BASE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_NO, BAS),
+    [TD_BASE_TILDE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_TILD, BAS),
 };
 // clang-format on
 
 const char *layer_strings[] = {
-    [LAYER_BASE] = "Base",
-    [LAYER_SWE] = "Swe",
-    [LAYER_ETC] = "Etc",
-    [LAYER_STC] = "sEtc",
-    [LAYER_NUM] = "Num",
-    [LAYER_SYM] = "Sym",
-    [LAYER_NAV] = "Nav",
+    [BAS] = "Base",
+    [SWE] = "Swe",
+    [ETC] = "Etc",
+    [STC] = "sEtc",
+    [NUM] = "Num",
+    [SYM] = "Sym",
+    [NAV] = "Nav",
 };
 
 void keyboard_post_init_user(void) {

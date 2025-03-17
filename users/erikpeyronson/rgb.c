@@ -32,14 +32,14 @@ void my_rgb_init(void)
 
 // clang-format off
 static rgb_color_t layer_colors[] = {
-  [LAYER_BASE] = { RGB_OFF  },
-  [LAYER_SWE]  = { RGB_YELLOW },
-  [LAYER_NUM]  = { RGB_BLUE   },
-  [LAYER_SYM]  = { RGB_GREEN  },
-  [LAYER_NAV]  = { RGB_ORANGE },
-  [LAYER_STC]  = { RGB_RED    },
+  [BAS] = { RGB_OFF  },
+  [SWE]  = { RGB_YELLOW },
+  [NUM]  = { RGB_BLUE   },
+  [SYM]  = { RGB_GREEN  },
+  [NAV]  = { RGB_ORANGE },
+  [STC]  = { RGB_RED    },
   [LAYER_END]  = { RGB_OFF    },
-  [LAYER_ETC]  = { RGB_PURPLE }
+  [ETC]  = { RGB_PURPLE }
 };
 // clang-format on
 
@@ -120,7 +120,7 @@ void my_rgb_light_mod_if_set(uint8_t kc, uint8_t led_config)
     {
       case MOD_ONESHOT:
         {
-          rgb_color_t rgb = get_color(LAYER_ETC);
+          rgb_color_t rgb = get_color(ETC);
           rgb_matrix_set_color(led_config, rgb.red, rgb.green, rgb.blue);
           break;
         }
@@ -196,7 +196,7 @@ void thumbs_only(void)
 
       // If we are on the base layer use the target layer, otherwise just
       // display which layer we are at
-      if (current_layer == LAYER_BASE)
+      if (current_layer == BAS)
         {
           uint16_t kc           = keymap_key_to_keycode(0, current_key);
           uint8_t  target_layer = QK_LAYER_TAP_GET_LAYER(kc);
@@ -204,7 +204,7 @@ void thumbs_only(void)
         }
       // We shold be proper patriots and use the colors of the swedish flag when in
       // the swe layer
-      else if (current_layer == LAYER_SWE && is_keyboard_left())
+      else if (current_layer == SWE && is_keyboard_left())
         {
           rgb = (rgb_color_t){RGB_BLUE};
         }
@@ -237,7 +237,7 @@ void thumbs_solid(void)
   uint8_t     first_column = 3;
   uint8_t     last_column  = 5;
   rgb_color_t rgb;
-  if (current_layer == LAYER_SWE && is_keyboard_left())
+  if (current_layer == SWE && is_keyboard_left())
     {
       rgb = (rgb_color_t){RGB_BLUE};
     }

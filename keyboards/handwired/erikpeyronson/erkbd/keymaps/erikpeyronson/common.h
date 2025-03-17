@@ -4,13 +4,13 @@
 
 typedef enum
 {
-  LAYER_BASE = 0,
-  LAYER_SWE,
-  LAYER_ETC,
-  LAYER_STC,
-  LAYER_NUM,
-  LAYER_SYM,
-  LAYER_NAV,
+  BAS = 0,
+  SWE,
+  ETC,
+  STC,
+  NUM,
+  SYM,
+  NAV,
   // Not an actual layer, used to end loop conditions and has to be last
   LAYER_END
 } layer_t;
