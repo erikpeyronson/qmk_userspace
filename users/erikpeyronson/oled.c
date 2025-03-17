@@ -122,7 +122,7 @@ static void my_oled_render_selection(const char *str, bool is_active, bool is_on
       oled_write(str, false);
     }
 
-  if (strlen(str) < 4)
+  if (strlen(str) < 3)
     {
       oled_advance_page(false);
     }
@@ -162,8 +162,8 @@ static void my_oled_render_locks(void)
   // clang-format off
   my_oled_render_selection( "Ctrl", (mod_state & MOD_BIT(KC_LEFT_CTRL) | MOD_BIT(KC_RIGHT_CTRL) ),  osm_state & MOD_MASK_CTRL);
   my_oled_render_selection( "Shif", (mod_state & MOD_BIT(KC_LEFT_SHIFT) | MOD_BIT(KC_RIGHT_SHIFT) ), osm_state & MOD_MASK_SHIFT);
-  my_oled_render_selection( "Alt",  (mod_state & MOD_BIT(KC_LEFT_ALT) | MOD_BIT(KC_RIGHT_ALT) ),   osm_state & MOD_MASK_ALT);
-  my_oled_render_selection( "Win",  (mod_state & MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_RIGHT_GUI) ),   osm_state & MOD_MASK_GUI);
+  my_oled_render_selection( "Alt ",  (mod_state & MOD_BIT(KC_LEFT_ALT) | MOD_BIT(KC_RIGHT_ALT) ),   osm_state & MOD_MASK_ALT);
+  my_oled_render_selection( "Win ",  (mod_state & MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_RIGHT_GUI) ),   osm_state & MOD_MASK_GUI);
   // clang-format on
 }
 #else
@@ -184,7 +184,7 @@ static void my_oled_render_locks(void)
   // clang-format off
   my_oled_render_selection( "Ctrl", (mod_state & MOD_BIT(KC_LEFT_CTRL)),  osm_state & MOD_MASK_CTRL);
   my_oled_render_selection( "Shif", (mod_state & MOD_BIT(KC_LEFT_SHIFT)), osm_state & MOD_MASK_SHIFT);
-  my_oled_render_selection( "Alt",  (mod_state & MOD_BIT(KC_LEFT_ALT)),   osm_state & MOD_MASK_ALT);
+  my_oled_render_selection( "Alt ",  (mod_state & MOD_BIT(KC_LEFT_ALT)),   osm_state & MOD_MASK_ALT);
   my_oled_render_selection( "Win",  (mod_state & MOD_BIT(KC_LEFT_GUI)),   osm_state & MOD_MASK_GUI);
   // clang-format on
 }
