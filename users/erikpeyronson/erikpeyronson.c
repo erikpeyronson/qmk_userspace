@@ -22,7 +22,7 @@ uint16_t get_effective_keycode(uint8_t current_layer, keypos_t key)
   return KC_NO; // No valid key found (shouldn't happen in a properly defined keymap)
 }
 
-__attribute__((weak)) char keycode_to_char(uint16_t keycode, keyrecord_t *record)
+__attribute__((weak)) char keycode_to_char(uint16_t keycode, keypos_t keypos)
 {
   if (MY_IS_QK_TAP_DANCE(keycode))
     {
@@ -47,7 +47,7 @@ __attribute__((weak)) char keycode_to_char(uint16_t keycode, keyrecord_t *record
 
   if (keycode == KC_TRANSPARENT)
     {
-      keycode = get_effective_keycode(get_highest_layer(layer_state), record->event.key);
+      keycode = get_effective_keycode(get_highest_layer(layer_state), keypos);
     }
 
   if (IS_QK_MOD_TAP(keycode))

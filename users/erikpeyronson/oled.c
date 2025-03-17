@@ -30,17 +30,13 @@ void           my_oled_init(const uint16_t keymaps[6][MATRIX_ROWS][MATRIX_COLS])
   uint8_t no_rows = 3;
   uint8_t first_row;
 
-  // uint8_t invert_offset;
-
   if (is_keyboard_left())
     {
-      first_row     = 0;
-      // invert_offset = 0;
+      first_row = 0;
     }
   else
     {
       first_row = 4;
-      // invert_offset = 6;
     }
 
   for (uint8_t layer = 0; layer < 6; ++layer)
@@ -52,19 +48,9 @@ void           my_oled_init(const uint16_t keymaps[6][MATRIX_ROWS][MATRIX_COLS])
               keypos_t keypos = {col, row};
               uint16_t kc     = keymap_key_to_keycode(layer, keypos);
 
-              // Mirror the index of the character for the right half so that the code rendering
-              // can be used for both
               char *char_to_set;
-              if (is_keyboard_left())
-                {
-                  char_to_set = &keymap_chars[layer][row - first_row][col - first_col];
-                }
-              else
-                {
-                  // char_to_set = &keymap_chars[layer][row - first_row][invert_offset - col - first_col];
-                  char_to_set = &keymap_chars[layer][row - first_row][col - first_col];
-                }
-              *char_to_set = keycode_to_char(kc, NULL);
+              char_to_set  = &keymap_chars[layer][row - first_row][col - first_col];
+              *char_to_set = keycode_to_char(kc, keypos);
             }
         }
     }
@@ -78,7 +64,6 @@ static void my_oled_render_keylog(void)
 
   uint8_t rows = 3;
   uint8_t cols = 6;
-  // oled_write_ln(PSTR("-----"), false);
 
   for (size_t i = 0; i < rows; i++)
     {
@@ -139,7 +124,7 @@ static void my_oled_render_selection(const char *str, bool is_active, bool is_on
 
   if (strlen(str) < 4)
     {
-      // oled_advance_page(false);
+      oled_advance_page(false);
     }
 }
 #ifdef MY_OLED_RESOLUTION_128_32
@@ -175,10 +160,10 @@ static void my_oled_render_locks(void)
   uint8_t mod_state = get_mods();
   uint8_t osm_state  = get_oneshot_mods();
   // clang-format off
-  my_oled_render_selection( "Ctrl", (mod_state & MOD_BIT(KC_LEFT_CTRL)),  osm_state & MOD_MASK_CTRL);
-  my_oled_render_selection( "Shif", (mod_state & MOD_BIT(KC_LEFT_SHIFT)), osm_state & MOD_MASK_SHIFT);
-  my_oled_render_selection( "Alt",  (mod_state & MOD_BIT(KC_LEFT_ALT)),   osm_state & MOD_MASK_ALT);
-  my_oled_render_selection( "Win",  (mod_state & MOD_BIT(KC_LEFT_GUI)),   osm_state & MOD_MASK_GUI);
+  my_oled_render_selection( "Ctrl", (mod_state & MOD_BIT(KC_LEFT_CTRL) | MOD_BIT(KC_RIGHT_CTRL) ),  osm_state & MOD_MASK_CTRL);
+  my_oled_render_selection( "Shif", (mod_state & MOD_BIT(KC_LEFT_SHIFT) | MOD_BIT(KC_RIGHT_SHIFT) ), osm_state & MOD_MASK_SHIFT);
+  my_oled_render_selection( "Alt",  (mod_state & MOD_BIT(KC_LEFT_ALT) | MOD_BIT(KC_RIGHT_ALT) ),   osm_state & MOD_MASK_ALT);
+  my_oled_render_selection( "Win",  (mod_state & MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_RIGHT_GUI) ),   osm_state & MOD_MASK_GUI);
   // clang-format on
 }
 #else
@@ -187,9 +172,6 @@ static void my_oled_render_locks(void)
 {
   led_t led_config = host_keyboard_led_state();
 
-  // oled_write_P(PSTR("LOCKS"), false);
-  // oled_advance_page(true);
-  // oled_write_P(PSTR("-----"), false);
   // oled_advance_page(true);
   my_oled_render_selection("Word", is_caps_word_on(), false);
   my_oled_render_selection("Caps", led_config.caps_lock, false);
@@ -199,12 +181,6 @@ static void my_oled_render_locks(void)
   uint8_t mod_state = get_mods();
   uint8_t osm_state = get_oneshot_mods();
 
-  // oled_write_P(PSTR("-----"), false);
-  // oled_advance_page(true);
-  // oled_write_P(PSTR("MODS "), false);
-  // oled_advance_page(true);
-  // oled_write_P(PSTR("-----"), false);
-  // oled_advance_page(true);
   // clang-format off
   my_oled_render_selection( "Ctrl", (mod_state & MOD_BIT(KC_LEFT_CTRL)),  osm_state & MOD_MASK_CTRL);
   my_oled_render_selection( "Shif", (mod_state & MOD_BIT(KC_LEFT_SHIFT)), osm_state & MOD_MASK_SHIFT);
