@@ -32,4 +32,4 @@ enum
   TD_BASE_TILDE
 };
 
-#define MY_LT(layer, kc) LT(layer, kc)
+// #define LT(layer, kc) LT(layer, kc)
