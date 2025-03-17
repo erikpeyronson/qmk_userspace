@@ -36,18 +36,18 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_BASE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_NO, LAYER_BASE),
     [TD_BASE_TILDE] = ACTION_TAP_DANCE_LAYER_MOVE(KC_TILD, LAYER_BASE),
 };
-// clang-format on
 
 const char *layer_strings[] = {
-    [LAYER_BASE] = "Base",
-    [LAYER_ETC]  = "Osm",
-    [LAYER_SWE]  = "Swe",
-    [LAYER_NUM]  = "Num",
-    [LAYER_SYM]  = "Sym",
-    [LAYER_NAV]  = "Nav",
-    [LAYER_STC]  = "Etc",
+  [LAYER_BASE] = "Bas",
+  [LAYER_ETC]  = "Osm",
+  [LAYER_SWE]  = "Swe",
+  [LAYER_NUM]  = "Num",
+  [LAYER_SYM]  = "Sym",
+  [LAYER_NAV]  = "Nav",
+  [LAYER_STC]  = "Etc",
 };
 
+// clang-format on
 void keyboard_post_init_user(void)
 {
   // Customise these values to desired behaviour
