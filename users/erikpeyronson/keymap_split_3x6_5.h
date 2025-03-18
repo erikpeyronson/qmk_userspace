@@ -1,7 +1,7 @@
+#pragma once
+
 #include QMK_KEYBOARD_H
-#if __has_include("keymap.h")
-#    include "keymap.h"
-#endif
+#include "erikpeyronson.h"
 
 #define MY_CAPS_WORD QK_CAPS_WORD_TOGGLE
 

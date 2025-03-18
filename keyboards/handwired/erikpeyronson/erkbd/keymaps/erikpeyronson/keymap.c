@@ -2,6 +2,8 @@
 
 #include "quantum.h"
 
+#include "keymap_split_3x6_5.h"
+
 #include "rgb.h"
 #include "logo.h"
 #include "common.h"
@@ -9,7 +11,6 @@
 #include "oled.h"
 #include "erikpeyronson.h"
 
-#include "keymap_out.h"
 #include "encoder_navigation.h"
 
 // clang-format off

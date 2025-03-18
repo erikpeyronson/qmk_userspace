@@ -9,7 +9,7 @@
 #include "oled.h"
 #include "erikpeyronson.h"
 
-#include "keymap_out.h"
+#include "keymap_split_3x6_5.h"
 #include "encoder_navigation.h"
 
 // clang-format off
