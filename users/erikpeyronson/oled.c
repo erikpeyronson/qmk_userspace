@@ -88,39 +88,20 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation)
   return rotation;
 }
 
-static void my_oled_write_captalized(const char *str, bool invert)
-{
-  for (uint8_t i = 0; i < strlen(str); ++i)
-    {
-      oled_write_char(toupper(str[i]), false);
-    }
-}
-
 static void my_oled_render_selection(const char *str, bool is_active, bool is_oneshot_active)
 {
   (void)is_oneshot_active;
-  bool write_capitalized = false;
+  // bool write_capitalized = false;
   if (is_oneshot_active)
     {
       oled_write_char('-', false);
-    }
-  else if (is_active)
-    {
-      oled_write_char('*', false);
     }
   else
     {
       oled_write_char(' ', false);
     }
 
-  if (write_capitalized)
-    {
-      my_oled_write_captalized(str, false);
-    }
-  else
-    {
-      oled_write(str, false);
-    }
+    oled_write(str, is_active);
 
   if (strlen(str) < 3)
     {

@@ -45,6 +45,7 @@ enum
 };
 
 // Custom helper functions used by rgb/oled. Can be overridden in keymap
+uint16_t get_effective_keycode(uint8_t current_layer, keypos_t key);
 char        keycode_to_char(uint16_t keycode, keypos_t keypos);
 const char *layer_to_string(uint8_t layer);
 int8_t      get_layer_with_key(uint8_t layer, const keypos_t keypos);
