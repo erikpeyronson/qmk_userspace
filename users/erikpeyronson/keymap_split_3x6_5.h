@@ -11,7 +11,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /********************************************************************************************************************************************************************************************************/
         KC_TAB,          KC_Q,            KC_W,            KC_E,            KC_R,            KC_T,           /**/        KC_Y,            KC_U,            KC_I,            KC_O,            KC_P,            KC_MINS,
         LGUI_T(KC_ESC),  KC_A,            LALT_T(KC_S),    LSFT_T(KC_D),    LCTL_T(KC_F),    KC_G,           /**/        KC_H,            RCTL_T(KC_J),    RSFT_T(KC_K),    LALT_T(KC_L),    KC_SCLN,         RGUI_T(KC_QUOT),
-        LT(ETC,KC_NO),   KC_Z,            KC_X,            KC_C,            KC_V,            KC_B,           /**/        KC_N,            KC_M,            KC_COMM,         KC_DOT,          KC_SLSH,         QK_REP,
+        MO(ETC),         KC_Z,            KC_X,            KC_C,            KC_V,            KC_B,           /**/        KC_N,            KC_M,            KC_COMM,         KC_DOT,          KC_SLSH,         QK_REP,
         /********************************************************************************************************************************************************************************************************/
                          KC_NO,           LT(NAV,KC_BSPC), LT(SYM,KC_BSPC), LT(NUM,KC_DEL),  MO(ETC),        /**/        MO(ETC),         LT(NUM, KC_ENT), LT(SYM,KC_SPC),  LT(NAV, KC_SPC), KC_NO
         /********************************************************************************************************************************************************************************************************/
@@ -21,7 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /********************************************************************************************************************************************************************************************************/
         KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,        /**/        KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,         RALT(KC_W),
         KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,        /**/        KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,         RALT(KC_P),      RALT(KC_Q),
-        LT(STC,KC_NO),   KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,        /**/        KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,
+        MO(STC),         KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,        /**/        KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_TRNS,
         /********************************************************************************************************************************************************************************************************/
                          KC_NO,           KC_TRNS,         KC_TRNS,         KC_TRNS,         MO(ETC),        /**/        MO(ETC),         KC_TRNS,         KC_TRNS,         KC_TRNS,         KC_NO
         /********************************************************************************************************************************************************************************************************/
@@ -75,6 +75,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 // clang-format on
+
+#ifdef CHORDAL_HOLD_ENABLE
+// clang-format off
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
+    LAYOUT_split_3x6_5(
+        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
+             'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R'
+    );
+// clang-format on
+#endif
 
 #ifdef OTHER_KEYMAP_C
 #    include OTHER_KEYMAP_C

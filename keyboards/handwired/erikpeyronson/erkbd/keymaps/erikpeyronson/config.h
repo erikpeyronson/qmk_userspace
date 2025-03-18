@@ -139,3 +139,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ONESHOT_TIMEOUT 10000  /* Time (in ms) before the one shot key is released */
 
 #define SPLIT_MODS_ENABLE
+
+#define PERMISSIVE_HOLD
+#define CHORDAL_HOLD

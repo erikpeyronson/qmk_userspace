@@ -40,12 +40,12 @@ tap_dance_action_t tap_dance_actions[] = {
 
 const char *layer_strings[] = {
   [BAS]  = "Bas",
-  [ETC]  = "Osm",
+  [ETC]  = "Etc",
   [SWE]  = "Swe",
   [NUM]  = "Num ",
   [SYM]  = "Sym",
   [NAV]  = "Nav",
-  [STC]  = "Etc",
+  [STC]  = "Stc",
 };
 
 // clang-format on
@@ -145,3 +145,13 @@ void housekeeping_task_user(void)
       is_idle = false;
     }
 }
+
+// clang-format off
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
+    LAYOUT_split_3x6_5(
+        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
+             'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R'
+    );
+// clang-format on
