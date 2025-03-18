@@ -21,7 +21,7 @@
 static char keymap_chars[6][3][MATRIX_COLS];
 #endif
 
-void           my_oled_init(const uint16_t keymaps[6][MATRIX_ROWS][MATRIX_COLS])
+void my_oled_init(const uint16_t keymaps[6][MATRIX_ROWS][MATRIX_COLS])
 {
 #ifdef MY_OLED_RENDER_KEYMAP_ENABLED
   uint8_t no_cols   = 6;
@@ -101,7 +101,7 @@ static void my_oled_render_selection(const char *str, bool is_active, bool is_on
       oled_write_char(' ', false);
     }
 
-    oled_write(str, is_active);
+  oled_write(str, is_active);
 
   if (strlen(str) < 3)
     {
@@ -139,7 +139,7 @@ static void my_oled_render_locks(void)
   oled_write_P(PSTR("MODS "), false);
   oled_write_P(PSTR("-----"), false);
   uint8_t mod_state = get_mods();
-  uint8_t osm_state  = get_oneshot_mods();
+  uint8_t osm_state = get_oneshot_mods();
   // clang-format off
   my_oled_render_selection( "Ctrl", (mod_state & MOD_BIT(KC_LEFT_CTRL) | MOD_BIT(KC_RIGHT_CTRL) ),  osm_state & MOD_MASK_CTRL);
   my_oled_render_selection( "Shif", (mod_state & MOD_BIT(KC_LEFT_SHIFT) | MOD_BIT(KC_RIGHT_SHIFT) ), osm_state & MOD_MASK_SHIFT);
@@ -163,10 +163,10 @@ static void my_oled_render_locks(void)
   uint8_t osm_state = get_oneshot_mods();
 
   // clang-format off
-  my_oled_render_selection( "Ctrl", (mod_state & MOD_BIT(KC_LEFT_CTRL)),  osm_state & MOD_MASK_CTRL);
-  my_oled_render_selection( "Shif", (mod_state & MOD_BIT(KC_LEFT_SHIFT)), osm_state & MOD_MASK_SHIFT);
-  my_oled_render_selection( "Alt ",  (mod_state & MOD_BIT(KC_LEFT_ALT)),   osm_state & MOD_MASK_ALT);
-  my_oled_render_selection( "Win",  (mod_state & MOD_BIT(KC_LEFT_GUI)),   osm_state & MOD_MASK_GUI);
+  my_oled_render_selection( "Ctrl", ((mod_state & MOD_BIT(KC_LEFT_CTRL)) || (mod_state & MOD_BIT(KC_RIGHT_CTRL))),  osm_state & MOD_MASK_CTRL);
+  my_oled_render_selection( "Shif", ((mod_state & MOD_BIT(KC_LEFT_SHIFT)) || (mod_state & MOD_BIT(KC_RIGHT_SHIFT))), osm_state & MOD_MASK_SHIFT);
+  my_oled_render_selection( "Alt ",  ((mod_state & MOD_BIT(KC_LEFT_ALT)) || (mod_state & MOD_BIT(KC_RIGHT_ALT))),   osm_state & MOD_MASK_ALT);
+  my_oled_render_selection( "Win",  ((mod_state & MOD_BIT(KC_LEFT_GUI)) || (mod_state & MOD_BIT(KC_RIGHT_GUI))),   osm_state & MOD_MASK_GUI);
   // clang-format on
 }
 
@@ -200,10 +200,9 @@ void my_oled_render_info(void)
 #endif
 }
 
-
 #ifdef MY_RENDER_LOGO_ENABLED
-static uint8_t brigtness = 0;
-static bool screen_saver_on = false;
+static uint8_t brigtness       = 0;
+static bool    screen_saver_on = false;
 
 static void my_oled_render_logo(void)
 {
@@ -232,7 +231,6 @@ void my_oled_screensaver(bool turn_on)
     }
 }
 
-
 bool oled_task_user(void)
 {
   if (!screen_saver_on)
@@ -252,8 +250,8 @@ void my_oled_screensaver(bool turn_on) {}
 
 bool oled_task_user(void)
 {
-      my_oled_render_info();
-      return false;
+  my_oled_render_info();
+  return false;
 }
 #endif
 
