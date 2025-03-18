@@ -38,10 +38,10 @@ tap_dance_action_t tap_dance_actions[] = {
 };
 
 const char *layer_strings[] = {
-  [BAS] = "Bas",
+  [BAS]  = "Bas",
   [ETC]  = "Osm",
   [SWE]  = "Swe",
-  [NUM]  = "Num",
+  [NUM]  = "Num ",
   [SYM]  = "Sym",
   [NAV]  = "Nav",
   [STC]  = "Etc",

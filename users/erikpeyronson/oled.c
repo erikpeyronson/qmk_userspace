@@ -39,7 +39,7 @@ void           my_oled_init(const uint16_t keymaps[6][MATRIX_ROWS][MATRIX_COLS])
       first_row = 4;
     }
 
-  for (uint8_t layer = 0; layer < 6; ++layer)
+  for (uint8_t layer = 0; layer < 7; ++layer)
     {
       for (size_t row = first_row; row < first_row + no_rows; row++)
         {

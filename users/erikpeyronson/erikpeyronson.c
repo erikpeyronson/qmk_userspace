@@ -84,8 +84,11 @@ __attribute__((weak)) char keycode_to_char(uint16_t keycode, keypos_t keypos)
             return '{';
           case 0x30:
             return '}';
+          case KC_EQUAL:
+            return '+';
         }
     }
+
 
   if (IS_QK_LAYER_TAP(keycode))
     {
@@ -119,6 +122,55 @@ __attribute__((weak)) char keycode_to_char(uint16_t keycode, keypos_t keypos)
         return '-';
       case KC_KP_PLUS:
         return '+';
+    }
+
+    switch(keycode) {
+      case KC_UP:
+        return 0x18;
+    case KC_DOWN:
+        return 0x19;
+    case KC_LEFT:
+        return 0x1B;
+    case KC_RIGHT:
+        return 0x1A;
+    case KC_PGUP:
+        return 'U';
+    case KC_PGDN:
+        return 'D';
+    case KC_HOME:
+        return 'H';
+    case KC_END:
+        return 'E';
+    case KC_INS:
+        return 'I';
+    }
+
+    switch(keycode) {
+      case KC_F1:
+      return '1';
+    case KC_F2:
+      return '2';
+    case KC_F3:
+      return '3';
+    case KC_F4:
+      return '4';
+    case KC_F5:
+      return '5';
+    case KC_F6:
+      return '6';
+    case KC_F7:
+      return '7';
+    case KC_F8:
+      return '8';
+    case KC_F9:
+      return '9';
+    case KC_F10:
+      return '0';
+    case KC_F11:
+      return '1';
+    case KC_F12:
+      return '2';
+
     }
 
   if (keycode > ARRAY_SIZE(code_to_name))
